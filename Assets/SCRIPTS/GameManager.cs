@@ -71,10 +71,23 @@ public class GameManager : MonoBehaviour
         {
             case EstadoJuego.Calibrando:
 
-                if (Input.GetKeyDown(KeyCode.W))
+#if UNITY_EDITOR 
+                if (Input.GetKeyDown(KeyCode.W) || Input.GetMouseButtonDown(0))
                 {
                     Player1.Seleccionado = true;
                 }
+#elif UNITY_ANDROID || UNITY_IOS
+         if (Input.GetMouseButtonDown(0))
+                {
+                    Player1.Seleccionado = true;
+                }
+#elif UNITY_STANDALONE
+         if (Input.GetKeyDown(KeyCode.W)
+         {
+         Player1.Seleccionado = true;
+         }
+#endif
+
 
                 if (Input.GetKeyDown(KeyCode.UpArrow) && playersCount == 2)
                 {
