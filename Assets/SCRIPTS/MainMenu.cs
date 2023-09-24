@@ -1,18 +1,40 @@
-using System.Collections;
-using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 
-public class MainMenu : MonoBehaviour
+public class MainMenu: MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private string singleplayerSceneName = "conduccion9";
+    [SerializeField] private string multiplayerSceneName = "conduccion10";
+    [SerializeField] private string creditsSceneName = "Credits";
+    [SerializeField] private string mainMenuSceneName = "Menu";
+
+    public void LoadScene(string sceneName)
     {
-        
+        SceneManager.LoadScene(sceneName);
     }
 
-    // Update is called once per frame
-    void Update()
+    public void PlaySingleplayer()
     {
-        
+        LoadScene(singleplayerSceneName);
+    }
+    public void PlayMultiplayer()
+    {
+        LoadScene(multiplayerSceneName);
+    }
+
+    public void ShowCredits()
+    {
+        LoadScene(creditsSceneName);
+    }
+
+    public void GoMainMenu()
+    {
+        LoadScene(mainMenuSceneName);
+    }
+
+    public void QuitGame()
+    {
+        Application.Quit();
     }
 }
+

@@ -38,7 +38,7 @@ public class GameManager : MonoBehaviour
     //la pista de carreras
     public GameObject[] ObjsCarrera;
 
-    public static int playersCount = 1;
+    public int playersCount = 1;
 
     //--------------------------------------------------------//
 
