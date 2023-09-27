@@ -75,6 +75,9 @@ public class GameManager : MonoBehaviour
                 if (Input.GetKeyDown(KeyCode.W) || Input.GetMouseButtonDown(0))
                 {
                     Player1.Seleccionado = true;
+
+                    if(playersCount == 2)
+                        Player2.Seleccionado= true;
                 }
 #elif UNITY_ANDROID || UNITY_IOS
          if (Input.GetMouseButtonDown(0))
