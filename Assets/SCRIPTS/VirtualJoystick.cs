@@ -8,8 +8,8 @@ public class VirtualJoystick : MonoBehaviour, IDragHandler, IPointerUpHandler, I
 {
     [SerializeField] RectTransform stick = null;
     [SerializeField] Image Background = null;
+    [SerializeField] private int player = 0;
 
-    public string player = "";
     public float limit = 250f;
 
     public void OnPointerDown(PointerEventData eventData)
@@ -28,29 +28,29 @@ public class VirtualJoystick : MonoBehaviour, IDragHandler, IPointerUpHandler, I
         float x = pos.x / limit;
         float y = pos.y / limit;
 
-        SetHorizontal(x);
-        SetVertical(y);
+        SetHorizontal(player, x);
+        SetVertical(player, y);
     }
 
     public void OnPointerUp(PointerEventData eventData)
     {
         stick.anchoredPosition = Vector2.zero;
-        SetHorizontal(0);
-        SetVertical(0);
+        SetHorizontal(player,0);
+        SetVertical(player,0);
     }
 
     private void OnDisable()
     {
-        SetHorizontal(0);
-        SetVertical(0);
+        SetHorizontal(player,0);
+        SetVertical(player,0);
     }
 
-    void SetHorizontal(float val)
+    void SetHorizontal(int player, float val)
     {
         InputManager.Instance.SetAxis("Horizontal" + player, val);
     }
 
-    void SetVertical(float val)
+    void SetVertical(int player, float val)
     {
         InputManager.Instance.SetAxis("Vertical" + player, val);
     }
