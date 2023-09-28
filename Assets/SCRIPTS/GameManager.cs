@@ -83,6 +83,7 @@ public class GameManager : MonoBehaviour
     IEnumerator Start()
     {
         difficulty = DifficultyManager.Instance.difficulty;
+        SetDifficulty();
         yield return null;
         IniciarTutorial();
     }
