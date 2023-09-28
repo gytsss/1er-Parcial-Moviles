@@ -77357,7 +77357,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c8ccfbee54199948923d8705f53aea9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TiempoDeJuego: 10
+  TiempoDeJuego: 60
   difficulty: 1
   EstAct: 0
   Player1: {fileID: 13058}
