@@ -15,9 +15,6 @@ public class PalletMover : ManejoPallets
     public ManejoPallets Desde, Hasta;
     bool segundoCompleto = false;
 
-
-#if UNITY_ANDROID || UNITY_IOS || UNITY_EDITOR
-
     [SerializeField] private GameManager gameManager;
     [SerializeField] private Button step1Button;
     [SerializeField] private Button step2Button;
@@ -29,8 +26,7 @@ public class PalletMover : ManejoPallets
         step2Button.onClick.AddListener(OnStep2ButtonClick);
         step3Button.onClick.AddListener(OnStep3ButtonClick);
     }
-#elif UNITY_EDITOR || UNITY_STANDALONE
-
+    
     private void Update()
     {
         switch (miInput)
@@ -67,8 +63,7 @@ public class PalletMover : ManejoPallets
                 break;
         }
     }
-
-#endif
+    
 
 #if UNITY_ANDROID || UNITY_IOS || UNITY_EDITOR
     private void OnStep1ButtonClick()
