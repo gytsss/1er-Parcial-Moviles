@@ -9,6 +9,8 @@ public class GameManager : MonoBehaviour
     public static GameManager Instancia;
 
     public float TiempoDeJuego = 60;
+    [SerializeField] private int difficulty = 1;
+    
 
     public enum EstadoJuego { Calibrando, Jugando, Finalizado }
     public EstadoJuego EstAct = EstadoJuego.Calibrando;
@@ -37,11 +39,42 @@ public class GameManager : MonoBehaviour
     public GameObject[] ObjsCalibracion2;
     //la pista de carreras
     public GameObject[] ObjsCarrera;
+    public GameObject[] Obstacles;
 
     public int playersCount = 1;
-
+    
     //--------------------------------------------------------//
 
+    void SetDifficulty()
+    {
+        switch (difficulty)
+        {
+            case 1:
+                Obstacles[0].SetActive(false);
+                Obstacles[1].SetActive(false);
+                Obstacles[2].SetActive(false);
+                break;
+            case 2:
+                Obstacles[0].SetActive(true);
+                Obstacles[1].SetActive(true);
+                Obstacles[2].SetActive(true);
+                break;
+            case 3:
+                Obstacles[0].SetActive(true);
+                Obstacles[1].SetActive(true);
+                Obstacles[2].SetActive(true);
+                TurnOnBagsMovement();
+                break;
+        }
+    }
+    
+    void TurnOnBagsMovement()
+    {
+        foreach (BagsMovement item in Obstacles[3].GetComponentsInChildren<BagsMovement>())
+        {
+            item.enabled = true;
+        }
+    }
     void Awake()
     {
         GameManager.Instancia = this;
@@ -49,6 +82,7 @@ public class GameManager : MonoBehaviour
 
     IEnumerator Start()
     {
+        difficulty = DifficultyManager.Instance.difficulty;
         yield return null;
         IniciarTutorial();
     }
@@ -151,7 +185,12 @@ public class GameManager : MonoBehaviour
 
                 TiempEspMuestraPts -= Time.deltaTime;
                 if (TiempEspMuestraPts <= 0)
-                    SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+                {
+                    if (playersCount == 1) 
+                        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 2);
+                    else if (playersCount == 2)
+                        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+                }
 
                 break;
         }
@@ -265,7 +304,8 @@ public class GameManager : MonoBehaviour
         {
             ObjsCarrera[i].SetActive(true);
         }
-
+        
+        SetDifficulty();
         //desactivacion de la calibracion
         Player1.FinCalibrado = true;
 
