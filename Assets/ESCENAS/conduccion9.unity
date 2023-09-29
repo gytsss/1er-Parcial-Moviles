@@ -77359,9 +77359,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TiempoDeJuego: 60
   difficulty: 1
-  EstAct: 0
   Player1: {fileID: 13058}
   Player2: {fileID: 27660010}
+  ConteoRedresivo: 1
   ConteoPosEsc:
     serializedVersion: 2
     x: 0

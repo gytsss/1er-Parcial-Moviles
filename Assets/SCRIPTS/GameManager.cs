@@ -11,14 +11,13 @@ public class GameManager : MonoBehaviour
     public float TiempoDeJuego = 60;
     [SerializeField] private int difficulty = 1;
     
-
     public enum EstadoJuego { Calibrando, Jugando, Finalizado }
-    public EstadoJuego EstAct = EstadoJuego.Calibrando;
+    //public EstadoJuego EstAct = EstadoJuego.Calibrando;
 
     public Player Player1;
     public Player Player2;
 
-    bool ConteoRedresivo = true;
+    public bool ConteoRedresivo = true;
     public Rect ConteoPosEsc;
     public float ConteoParaInicion = 3;
     public Text ConteoInicio;
@@ -42,7 +41,9 @@ public class GameManager : MonoBehaviour
     public GameObject[] Obstacles;
 
     public int playersCount = 1;
-    
+
+    public GameState state;
+
     //--------------------------------------------------------//
 
     void SetDifficulty()
@@ -82,14 +83,21 @@ public class GameManager : MonoBehaviour
 
     IEnumerator Start()
     {
+        SetState(new CalibrandoState());
         difficulty = DifficultyManager.Instance.difficulty;
         SetDifficulty();
         yield return null;
         IniciarTutorial();
     }
 
+    public void SetState(GameState state)
+    {
+        this.state = state;
+    }
+
     void Update()
     {
+        state.Handle(this);
         //REINICIAR
         if (Input.GetKey(KeyCode.Alpha0))
         {
@@ -102,107 +110,107 @@ public class GameManager : MonoBehaviour
             Application.Quit();
         }
 
-        switch (EstAct)
-        {
-            case EstadoJuego.Calibrando:
+//         switch (EstAct)
+//         {
+//             case EstadoJuego.Calibrando:
+//
+// #if UNITY_EDITOR 
+//                 if (Input.GetKeyDown(KeyCode.W) || Input.GetMouseButtonDown(0))
+//                 {
+//                     Player1.Seleccionado = true;
+//
+//                     if(playersCount == 2)
+//                         Player2.Seleccionado= true;
+//                 }
+// #elif UNITY_ANDROID || UNITY_IOS
+//          if (Input.GetMouseButtonDown(0))
+//                 {
+//                     Player1.Seleccionado = true;
+//                 }
+// #elif UNITY_STANDALONE
+//          if (Input.GetKeyDown(KeyCode.W)
+//          {
+//          Player1.Seleccionado = true;
+//          }
+// #endif
+//
+//
+//                 if (Input.GetKeyDown(KeyCode.UpArrow) && playersCount == 2)
+//                 {
+//                     Player2.Seleccionado = true;
+//                 }
+//
+//                 break;
+//             
+//             case EstadoJuego.Jugando:
+//
+//                 //SKIP LA CARRERA
+//                 if (Input.GetKey(KeyCode.Alpha9))
+//                 {
+//                     TiempoDeJuego = 0;
+//                 }
+//
+//                 if (TiempoDeJuego <= 0)
+//                 {
+//                     FinalizarCarrera();
+//                 }
+//
+//                 if (ConteoRedresivo)
+//                 {
+//                     ConteoParaInicion -= T.GetDT();
+//                     if (ConteoParaInicion < 0)
+//                     {
+//                         EmpezarCarrera();
+//                         ConteoRedresivo = false;
+//                     }
+//                 }
+//                 else
+//                 {
+//                     //baja el tiempo del juego
+//                     TiempoDeJuego -= T.GetDT();
+//                 }
+//                 if (ConteoRedresivo)
+//                 {
+//                     if (ConteoParaInicion > 1)
+//                     {
+//                         ConteoInicio.text = ConteoParaInicion.ToString("0");
+//                     }
+//                     else
+//                     {
+//                         ConteoInicio.text = "GO";
+//                     }
+//                 }
+//
+//                 ConteoInicio.gameObject.SetActive(ConteoRedresivo);
+//
+//                 TiempoDeJuegoText.text = TiempoDeJuego.ToString("00");
+//
+//                 break;
+//
+//             case EstadoJuego.Finalizado:
+//
+//                 //muestra el puntaje
+//
+//                 TiempEspMuestraPts -= Time.deltaTime;
+//                 if (TiempEspMuestraPts <= 0)
+//                 {
+//                     if (playersCount == 1) 
+//                         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 2);
+//                     else if (playersCount == 2)
+//                         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+//                 }
+//
+//                 break;
+//         }
 
-#if UNITY_EDITOR 
-                if (Input.GetKeyDown(KeyCode.W) || Input.GetMouseButtonDown(0))
-                {
-                    Player1.Seleccionado = true;
-
-                    if(playersCount == 2)
-                        Player2.Seleccionado= true;
-                }
-#elif UNITY_ANDROID || UNITY_IOS
-         if (Input.GetMouseButtonDown(0))
-                {
-                    Player1.Seleccionado = true;
-                }
-#elif UNITY_STANDALONE
-         if (Input.GetKeyDown(KeyCode.W)
-         {
-         Player1.Seleccionado = true;
-         }
-#endif
-
-
-                if (Input.GetKeyDown(KeyCode.UpArrow) && playersCount == 2)
-                {
-                    Player2.Seleccionado = true;
-                }
-
-                break;
-
-
-            case EstadoJuego.Jugando:
-
-                //SKIP LA CARRERA
-                if (Input.GetKey(KeyCode.Alpha9))
-                {
-                    TiempoDeJuego = 0;
-                }
-
-                if (TiempoDeJuego <= 0)
-                {
-                    FinalizarCarrera();
-                }
-
-                if (ConteoRedresivo)
-                {
-                    ConteoParaInicion -= T.GetDT();
-                    if (ConteoParaInicion < 0)
-                    {
-                        EmpezarCarrera();
-                        ConteoRedresivo = false;
-                    }
-                }
-                else
-                {
-                    //baja el tiempo del juego
-                    TiempoDeJuego -= T.GetDT();
-                }
-                if (ConteoRedresivo)
-                {
-                    if (ConteoParaInicion > 1)
-                    {
-                        ConteoInicio.text = ConteoParaInicion.ToString("0");
-                    }
-                    else
-                    {
-                        ConteoInicio.text = "GO";
-                    }
-                }
-
-                ConteoInicio.gameObject.SetActive(ConteoRedresivo);
-
-                TiempoDeJuegoText.text = TiempoDeJuego.ToString("00");
-
-                break;
-
-            case EstadoJuego.Finalizado:
-
-                //muestra el puntaje
-
-                TiempEspMuestraPts -= Time.deltaTime;
-                if (TiempEspMuestraPts <= 0)
-                {
-                    if (playersCount == 1) 
-                        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 2);
-                    else if (playersCount == 2)
-                        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-                }
-
-                break;
-        }
-
-        TiempoDeJuegoText.transform.parent.gameObject.SetActive(EstAct == EstadoJuego.Jugando && !ConteoRedresivo);
+        TiempoDeJuegoText.transform.parent.gameObject.SetActive(state is JugandoState  && !ConteoRedresivo);
     }
 
     //----------------------------------------------------------//
 
     public void IniciarTutorial()
     {
+        
         for (int i = 0; i < ObjsCalibracion1.Length; i++)
         {
             ObjsCalibracion1[i].SetActive(true);
@@ -222,7 +230,7 @@ public class GameManager : MonoBehaviour
         ConteoInicio.gameObject.SetActive(false);
     }
 
-    void EmpezarCarrera()
+    public void EmpezarCarrera()
     {
         Player1.GetComponent<Frenado>().RestaurarVel();
         Player1.GetComponent<ControlDireccion>().Habilitado = true;
@@ -232,11 +240,12 @@ public class GameManager : MonoBehaviour
             Player2.GetComponent<Frenado>().RestaurarVel();
             Player2.GetComponent<ControlDireccion>().Habilitado = true;
         }
+       
     }
 
-    void FinalizarCarrera()
+   public void FinalizarCarrera()
     {
-        EstAct = GameManager.EstadoJuego.Finalizado;
+        SetState(new FinalizadoState());
 
         TiempoDeJuego = 0;
 
@@ -298,8 +307,7 @@ public class GameManager : MonoBehaviour
     //cambia a modo de carrera
     void CambiarACarrera()
     {
-
-        EstAct = GameManager.EstadoJuego.Jugando;
+        SetState(new JugandoState());
 
         for (int i = 0; i < ObjsCarrera.Length; i++)
         {
