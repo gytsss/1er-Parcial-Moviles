@@ -1,6 +1,8 @@
 using UnityEngine;
 using System.Collections;
+using TMPro;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class MngPts : MonoBehaviour
 {
@@ -30,6 +32,12 @@ public class MngPts : MonoBehaviour
     public bool ActivadoAnims = false;
 
     Visualizacion Viz = new Visualizacion();
+
+    public RectTransform moneyPanel1;
+    public RectTransform moneyPanel2;
+    
+    public TextMeshPro moneyText1;
+    public TextMeshPro moneyText2;
 
     //---------------------------------//
 
@@ -134,6 +142,9 @@ public class MngPts : MonoBehaviour
 
     void SetDinero()
     {
+        moneyText1.text = "$" + Viz.PrepararNumeros(DatosPartida.PtsGanador);
+        moneyText2.text = "$" + Viz.PrepararNumeros(DatosPartida.PtsGanador);
+        
         GUI.skin = GS_Dinero;
 
         R.width = DineroEsc.x * Screen.width / 100;
