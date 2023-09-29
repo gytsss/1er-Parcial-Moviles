@@ -9,6 +9,7 @@ public class FinalPoints : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI player1PointsText; 
     [SerializeField] private TextMeshProUGUI player2PointsText; 
+    [SerializeField] private GameObject player2Car; 
     [SerializeField] private Image player2Image; 
     [SerializeField] private Image player1WinnerImage; 
     [SerializeField] private Image player2WinnerImage;
@@ -18,6 +19,7 @@ public class FinalPoints : MonoBehaviour
     {
         player1WinnerImage.enabled = false;
         player2WinnerImage.enabled = false;
+        player2Car.SetActive(false);
         
         StartCoroutine(ShowEndGame());
     }
@@ -34,6 +36,8 @@ public class FinalPoints : MonoBehaviour
         }
         else if (GameManager.Instancia.playersCount == 2)
         {
+            player2Car.SetActive(true);
+            
             if (DatosPartida.LadoGanadaor == DatosPartida.Lados.Izq)
             {
                 player1WinnerImage.enabled = true;

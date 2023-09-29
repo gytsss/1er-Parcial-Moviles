@@ -644,6 +644,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player1PointsText: {fileID: 415727352}
   player2PointsText: {fileID: 1896518499}
+  player2Car: {fileID: 1830465159}
   player2Image: {fileID: 2052588243}
   player1WinnerImage: {fileID: 1302760867}
   player2WinnerImage: {fileID: 1001106839}
@@ -4236,6 +4237,12 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 114656788537352472, guid: 7194ffb2b01c6ea4e924c02d5c213741, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 7194ffb2b01c6ea4e924c02d5c213741, type: 3}
+--- !u!1 &1830465159 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1505199022933032, guid: 7194ffb2b01c6ea4e924c02d5c213741,
+    type: 3}
+  m_PrefabInstance: {fileID: 1830465158}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1831607234
 GameObject:
   m_ObjectHideFlags: 0
