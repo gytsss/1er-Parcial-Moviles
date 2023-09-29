@@ -9,9 +9,6 @@ EditorBuildSettings:
     path: Assets/ESCENAS/Menu.unity
     guid: ac0b687b06594714bad9bbec9f9dc56a
   - enabled: 1
-    path: Assets/ESCENAS/Credits.unity
-    guid: 5ddd085f155998249bacf97cc98c21b6
-  - enabled: 1
     path: Assets/ESCENAS/conduccion9.unity
     guid: 6a990c81459e9b04c87adbbd2d639bbd
   - enabled: 1
@@ -20,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/ESCENAS/PtsFinal.unity
     guid: 3fed48a553168ae458bbf014c512a5cd
+  - enabled: 1
+    path: Assets/ESCENAS/Credits.unity
+    guid: 5ddd085f155998249bacf97cc98c21b6
   m_configObjects: {}

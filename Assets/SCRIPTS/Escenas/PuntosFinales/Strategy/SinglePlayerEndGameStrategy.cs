@@ -33,6 +33,6 @@ public class SinglePlayerEndGameStrategy : EndGameStrategy
         yield return new WaitForSeconds(timeToWait);
 
 
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene("Credits");
     }
 }
