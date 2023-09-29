@@ -34066,7 +34066,7 @@ Camera:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3071}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
   m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0.019607844}
@@ -34109,7 +34109,7 @@ Camera:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3093}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
   m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0.019607844}
@@ -77361,9 +77361,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TiempoDeJuego: 60
   difficulty: 1
-  EstAct: 0
   Player1: {fileID: 13058}
   Player2: {fileID: 27660010}
+  ConteoRedresivo: 1
   ConteoPosEsc:
     serializedVersion: 2
     x: 0
@@ -79596,7 +79596,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 100000, guid: 792b955377d07254ab4b27ff6b25b82a, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 100110, guid: 792b955377d07254ab4b27ff6b25b82a, type: 3}
       propertyPath: m_Name
@@ -85089,7 +85089,7 @@ PrefabInstance:
         type: 3}
       propertyPath: Inventario
       value: 
-      objectReference: {fileID: 60763196}
+      objectReference: {fileID: 479848262}
     - target: {fileID: 114911345111112572, guid: b81b1a58a0f14c9439cbdd014e695f71,
         type: 3}
       propertyPath: CamDescarga
@@ -85895,18 +85895,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 60763189}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &60763196 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5347541341094276324, guid: db6086bb6cb40af44868891788f049a9,
-    type: 3}
-  m_PrefabInstance: {fileID: 60763189}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 60763192}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &60763197 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5347541339501745234, guid: db6086bb6cb40af44868891788f049a9,

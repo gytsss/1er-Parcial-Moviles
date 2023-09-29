@@ -19,6 +19,8 @@ public class PalletMover : ManejoPallets
     [SerializeField] private Button step1Button;
     [SerializeField] private Button step2Button;
     [SerializeField] private Button step3Button;
+    
+#if UNITY_EDITOR || UNITY_ANDROID || UNITY_IOS
 
     private void Start()
     {
@@ -26,6 +28,7 @@ public class PalletMover : ManejoPallets
         step2Button.onClick.AddListener(OnStep2ButtonClick);
         step3Button.onClick.AddListener(OnStep3ButtonClick);
     }
+#endif
     
     private void Update()
     {
